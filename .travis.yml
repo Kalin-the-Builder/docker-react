@@ -9,3 +9,16 @@ script:
   - docker run -e CI=true kalinthebuilder/docker-react npm run test
 
 language: generic
+
+deploy:
+  provider: elasticbeanstalk
+  region: "af-south-1"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-af-south-1-524382694030"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
